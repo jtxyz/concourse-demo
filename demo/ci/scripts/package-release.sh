@@ -11,7 +11,7 @@ mkdir -p $TAR_FOLDER/backend
 cp -R frontend-bucket/* $TAR_FOLDER/frontend
 cp backend-bucket/*.jar $TAR_FOLDER/backend/todo.jar
 tar -czf $TAR_FILE -C $TAR_FOLDER .
-mv $TAR_FILE $ELEASE_FOLDER
+mv $TAR_FILE $RELEASE_FOLDER
 
 mkdir -p $PROD_FOLDER/frontend
 mkdir -p $PROD_FOLDER/backend

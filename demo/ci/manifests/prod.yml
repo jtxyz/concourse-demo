@@ -6,7 +6,7 @@ applications:
   memory: 768M
   disk_quota: 256M
   routes:
-  - route: todo.pcfbeta.io/api
+  - route: todos.pcfbeta.io/api
   path: backend/todo.jar
 
 - name: web-app
@@ -15,5 +15,5 @@ applications:
   memory: 256M
   disk_quota: 256M
   routes:
-  - route: todo.pcfbeta.io
+  - route: todos.pcfbeta.io
   path: frontend

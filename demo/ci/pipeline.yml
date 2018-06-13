@@ -12,10 +12,10 @@ config:
   branch: master
 
 - &cf-config
-  api: https://api.local.pcfdev.io
-  username: admin
-  password: admin
-  organization: pcfdev-org
+  api: https://api.run.pcfbeta.io
+  username: {{cf-username}}
+  password: {{cf-password}}
+  organization: {{cf-organization}}
   skip_cert_check: true
 
 - &s3-config
@@ -101,7 +101,7 @@ resources:
   type: cf
   source:
     <<: *cf-config
-    space: ci
+    space: dev
 
 - name: cf-prod
   type: cf

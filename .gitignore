@@ -2,5 +2,6 @@ presentation
 keys
 worker-state
 repos
+registry
 .idea
 .envrc

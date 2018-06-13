@@ -29,3 +29,5 @@ rm ./keys/ssh/id
 # create the directory to store the git repo
 mkdir -p repos
 git clone --bare git@github.com:Kehrlann/concourse-demo.git repos/concourse-demo.git
+
+mkdir -p registry

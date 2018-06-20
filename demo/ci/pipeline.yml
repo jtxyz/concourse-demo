@@ -16,7 +16,6 @@ config:
   username: {{cf-username}}
   password: {{cf-password}}
   organization: {{cf-organization}}
-  skip_cert_check: true
 
 - &s3-config
   access_key_id: minio

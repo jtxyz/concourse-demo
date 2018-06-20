@@ -5,11 +5,10 @@ config:
   branch: master
 
 - &cf-config
-  api: https://api.local.pcfdev.io
-  username: admin
-  password: admin
-  organization: pcfdev-org
-  skip_cert_check: true
+  api: https://api.run.pcfbeta.io
+  username: {{cf-username}}
+  password: {{cf-password}}
+  organization: {{cf-organization}}
 
 - &s3-config
   access_key_id: minio
@@ -51,7 +50,7 @@ resources:
   type: cf
   source:
     <<: *cf-config
-    space: ci
+    space: dev
 
 - name: backend-bucket
   type: s3

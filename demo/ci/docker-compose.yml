@@ -26,6 +26,8 @@ services:
     - CONCOURSE_NO_REALLY_I_DONT_WANT_ANY_AUTH=true
     - CONCOURSE_WORKER_GARDEN_NETWORK
     - CONCOURSE_RESOURCE_CHECKING_INTERVAL=5s
+    - CONCOURSE_VAULT_URL=http://vault:8200
+    - CONCOURSE_VAULT_CLIENT_TOKEN=35eb29c4-1635-40b6-85fe-3684f8006f86
 
   registry:
     image: registry:2
@@ -52,6 +54,11 @@ services:
       - ./repos:/git-server/repos
     ports: ["22222:22"]
 
+  vault:
+    image: vault
+    ports: ["8200:8200"]
+    environment:
+    - VAULT_DEV_ROOT_TOKEN_ID=8568d046-b70a-64f6-ebfe-ec2a891a8ba3
 
 volumes:
   registry:

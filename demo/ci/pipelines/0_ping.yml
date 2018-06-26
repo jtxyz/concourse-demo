@@ -9,8 +9,9 @@ jobs:
         source:
           repository: "alpine"
       run:
-        path: "/bin/ping"
+        path: "/bin/ash"
         args:
-        - "google.com"
         - "-c"
-        - "1"
+        - "echo HELLO $PERSON"
+    params:
+      PERSON: ((hello))

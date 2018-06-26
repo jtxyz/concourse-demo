@@ -1,14 +1,14 @@
 config:
 - &git-config
   uri: git@git-server:/git-server/repos/concourse-demo.git
-  private_key: {{ssh-key}}
+  private_key: ((id-rsa-git))
   branch: master
 
 - &cf-config
-  api: https://api.run.pcfbeta.io
-  username: {{cf-username}}
-  password: {{cf-password}}
-  organization: {{cf-organization}}
+  api: ((cf.api))
+  username: ((cf.username))
+  password: ((cf.password))
+  organization: ((cf.organization))
 
 - &s3-config
   access_key_id: minio

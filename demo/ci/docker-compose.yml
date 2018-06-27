@@ -13,7 +13,7 @@ services:
     image: concourse/concourse
     command: quickstart
     privileged: true
-    depends_on: [concourse-db]
+    depends_on: [concourse-db, registry, minio, git-server, vault]
     ports: ["8080:8080"]
     environment:
     - CONCOURSE_POSTGRES_HOST=concourse-db
@@ -31,7 +31,6 @@ services:
 
   registry:
     image: registry:2
-    depends_on: [concourse]
     volumes:
       - "registry:/var/lib/registry"
     ports:
@@ -39,7 +38,6 @@ services:
 
   minio:
     image: minio/minio
-    depends_on: [concourse]
     ports:
       - "9000:9000"
     environment:

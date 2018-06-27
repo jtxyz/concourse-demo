@@ -28,7 +28,7 @@ else
 fi
 
 # setup the ssh keys that concouse will use to talk to git
-if ! [ -e keys/ssh/id ]; then
+if ! [ -e keys/ssh/id -a -e keys/ssh/id.pub ]; then
   ssh-keygen -t rsa -f ./keys/ssh/id -N ''
   vault kv delete concourse/main/id-rsa-git
 else
@@ -41,7 +41,7 @@ else
   echo '√ git rsa key already stored in vault'
 fi
 
-if ! vault token lookup 35eb29c4-1635-40b6-85fe-3684f8006f8e 2>/dev/null; then
+if ! vault token lookup 35eb29c4-1635-40b6-85fe-3684f8006f86 >/dev/null 2>&1; then
   vault token create -ttl 15m -id 35eb29c4-1635-40b6-85fe-3684f8006f86
 else
   echo '√ temporary token already created'
@@ -55,7 +55,7 @@ else
 fi
 
 if ! vault list concourse/main/ | grep -q cf; then
-  if [ -z "${CF_API:-}" ]; then
+  if [ -z "${CF_API:-}" -o -z "${CF_USERNAME:-}" -o -z "${CF_PASSWORD:-}" -o -z "${CF_ORGANIZATION:-}" ]; then
     echo 'unable to configure vault with CF creds'
     echo '  set CF_API, CF_USERNAME, CF_PASSWORD and CF_ORGANIZATION and rerun to configure cf credetials vault'
     echo '  or run `vault kv put concourse/main/cf api=<CF_API> username=<CF_USERNAME> password=<CF_PASSWORD> organization=<CF_ORGANIZATION>`'

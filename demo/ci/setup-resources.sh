@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
+# set up the s3 buckets that the example pipeline expects to have
 export AWS_ACCESS_KEY_ID=minio
 export AWS_SECRET_ACCESS_KEY=changeme
 if ! aws --endpoint-url http://localhost:9000 s3 ls todo-version >/dev/null 2>&1; then
@@ -11,6 +12,7 @@ else
   echo '√ s3 buckets already exist'
 fi
 
+# pre-populate the local repository if necessary
 if ! curl -s localhost:5000/v2/_catalog | grep alpine -q; then
   docker pull alpine
   docker tag alpine localhost:5000/alpine
